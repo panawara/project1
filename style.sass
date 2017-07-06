@@ -1,0 +1,517 @@
+@mixin margin-auto
+	margin:
+		left: auto
+		right: auto
+
+@mixin background-gradient($start-color, $end-color, $orientation) 
+	background: $start-color
+	
+	@if $orientation == 'vertical' 
+	background: -webkit-linear-gradient(top, $start-color, $end-color)
+	background: linear-gradient(to bottom, $start-color, $end-color)
+	@if $orientation == 'horizontal' 
+	background: -webkit-linear-gradient(left, $start-color, $end-color)
+	background: linear-gradient(to right, $start-color, $end-color)
+
+@mixin footer-pack
+	text-align: center
+	float: none
+	display: block
+	padding-bottom: 0
+	float: inherit
+	height: auto
+	
+@mixin flex-position($position)
+	display: flex
+	align-items: $position
+	justify-content: $position
+	
+@mixin background($color: #313234)
+	background-color: $color
+	
+@mixin text($color: white)
+	color: $color
+	
+@mixin square($size)
+	width: $size
+	height: $size
+	
+.position-zero
+	top: 0
+	bottom: 0
+	right: 0
+	left: 0
+	
+* 
+	box-sizing: border-box
+
+body 
+	margin: 0
+	font-family: "Quicksand"
+
+.profits 
+	width: 100%
+	max-width: 1200px
+	@include margin-auto
+
+.row:before, .row:after 
+	content: ""
+	display: block
+	clear: both
+
+[class*='col-'] 
+	float: left
+	width: 100%
+	text-align: center
+
+header 
+	@include background()
+	@include margin-auto
+
+	nav 
+		img 
+			padding: 10px 0
+			float: left
+
+		ul 
+			float: right
+			margin-bottom: 0
+			padding: 0
+			list-style-type: none
+			overflow: auto
+			
+		ul li 
+			display: inline-block
+
+		ul li a 
+			display: block
+			@include text()
+			padding: 0 20px
+			text-decoration: none
+			text-transform: uppercase
+			&:hover
+				background: #595959
+
+section .profits 
+	@include margin-auto
+
+.hero 
+	background: url("https://static.pexels.com/photos/311012/pexels-photo-311012.jpeg")
+	background-size: cover
+	height: 500px
+
+	.slogan 
+		position: relative
+		@include text()
+		max-width: 800px
+		@include margin-auto
+		text-align: left
+		right: 0
+		text-transform: uppercase
+		float: right
+		top: 200px
+
+		h1 
+			background: rgba(0,0,0, 0.6)
+			font-size: 40px
+			padding: 20px
+			margin: 0 auto
+
+.font 
+	p 
+		padding: 10px
+
+	h2 
+		font-size: 25px
+		text-transform: uppercase
+
+p 
+	font-size: 15px
+	@include text(#7D7D7D)
+
+.row 
+	width: 100%
+	@include margin-auto
+	text-align: center
+
+.font:hover 
+	@include text(#3498db)
+
+.row 
+	h1 
+		font-size: 40px
+
+	.font 
+		padding: 50px
+
+.gallery 
+	padding: 50px
+
+	img 
+		float: left
+		display: block
+		width: 100%
+		height: 150px
+		object-fit: cover
+		&:hover 
+			opacity: 0.8
+			cursor: pointer
+
+	.col-2, .col-4 
+		position: relative
+
+	.layer 
+		position: absolute
+		line-height: 150px
+		width: 100%
+		@extend .position-zero
+		&:hover 
+			@include background(rgba(0, 0, 0, 0.5))
+			transition: 0.75s 
+			button 
+				@include background(#FEFFF1)
+				@include text(gray)
+				transition: 0.75s 
+
+		button 
+			width: 35px
+			height: 35px
+			border-radius: 15%
+			border: none
+			@include background(transparent)
+			@include text(transparent)
+
+.team 
+	padding: 50px
+
+	.col-3 
+		.person 
+			position: relative
+			border-radius: 50%
+			overflow: hidden
+			margin-left: 25px
+			margin-right: 25px
+			width: 250px 
+		img 
+			width: 100%
+			display: block
+			height: 200px
+			object-fit: cover
+		.layer 
+			position: absolute
+			@extend .position-zero
+			background: rgba(0, 0, 0, 0.5)
+			display: none 
+		.text 
+			position: absolute
+			width: 100px
+			height: 30px
+			left: calc(50% - 50px)
+			top: calc(50% - 15px)
+	&:hover .layer 
+		display: block
+
+.text p 
+	display: inline
+
+.numbers
+	padding: 20px
+	.col-3 
+		margin-top: 45px
+		text-transform: uppercase
+		@include text(black)
+		font-size: 40px
+
+	p 
+		line-height: 20px
+		@include text(#3498db)
+
+.footer 
+	@include background(#303331)
+	@include text()
+	width: 100%
+	text-align: center
+
+	.col-4 
+		padding-left: 45px
+
+	h2 
+		text-transform: uppercase
+		float: left
+
+	h3 
+		text-align: left
+		margin: 15px 0px
+
+	p 
+		text-align: left
+		padding: 10px
+		@include text()
+		font-weight: bold
+
+	hr 
+		width: 200px
+		margin: 35px 0 0 10px
+		border-width: 0px
+
+	.social i 
+		text-align: center
+		@include square(30px)
+		border: none
+		line-height: 30px
+		@include text()
+		margin: 7px
+		font-size: 20px
+		cursor: pointer
+
+hr 
+	@include text(#f00)
+	@include background-gradient(#313234, white, horizontal)
+	border-color: #303331
+	height: 1px
+
+.copyright 
+	.col-12 
+		@include text()
+		text-align: center
+		@include margin-auto
+		@include background()
+
+	p 
+		@include text()
+
+.col-1
+	width: 8.33%
+.col-2
+	width: 16.66%
+.col-3 
+	width: 25%	
+.col-4 
+	width: 33.33%
+.col-5 
+	width: 41.66%
+.col-6 
+	width: 50%
+.col-7 
+	width: 58.33%
+.col-8 
+	width: 66.66%
+.col-9 
+	width: 75%
+.col-10 
+	width: 83.33%
+.col-11 
+	width: 91.66%
+.col-12 
+	width: 100%
+.col-offset-0 
+	margin-left: 0
+.col-offset-1 
+	margin-left: 8.33%
+.col-offset-2 
+	margin-left: 16.66%
+.col-offset-3 
+	margin-left: 25%
+.col-offset-4 
+	margin-left: 33.33%
+.col-offset-5 
+	margin-left: 41.66%
+.col-offset-6 
+	margin-left: 50%
+.col-offset-7 
+	margin-left: 58.33%
+.col-offset-8 
+	margin-left: 66.66%
+.col-offset-9 
+	margin-left: 75%
+.col-offset-10 
+	margin-left: 83.33%
+.col-offset-11 
+	margin-left: 91.66%
+
+@media screen and (max-width: 768px)
+	.col-m-1 
+		width: 8.33%
+	.col-m-2 
+		width: 16.66%
+	.col-m-3 
+		width: 25%
+	.col-m-4 
+		width: 33.33%
+	.col-m-5 
+		width: 41.66%
+	.col-m-6 
+		width: 50%
+	.col-m-7 
+		width: 58.33%
+	.col-m-8 
+		width: 66.66%
+	.col-m-9 
+		width: 75%
+	.col-m-10 
+		width: 83.33%
+	.col-m-11 
+		width: 91.66%
+	.col-m-12 
+		width: 100%
+	header 
+		height: auto
+	
+		nav 
+			img 
+				text-align: center
+				display: block
+				@include margin-auto
+				font-size: 40px
+	
+			ul 
+				float: none
+				width: 100%
+				text-align: center
+				font-size: 20px
+				
+				li 
+					@include margin-auto
+					display: block
+					
+					a 
+						margin-top: 10px
+						margin-bottom: 10px
+						padding: 10px
+	
+	.hero .slogan, .hero .slogan p 
+		width: 300px
+		font-size: 15px
+	
+	.gallery 
+		height: 100vw
+		float: none
+		margin-top: 10px
+	
+		.layer button 
+			margin: 50% 2%
+			@include background(#FEFFF1)
+			color: gray
+			transition: 0.75s 
+	
+		img 
+			height: 100vw
+	
+	.team .col-m-12
+		@include flex-position(center)
+		height: 50vw
+		
+	
+	.pictures 
+		display: none
+	
+	.profits .col-m-12 
+		padding: 0px
+		margin-top: 20px
+	
+	.numbers 
+		float: none
+		font-size: 50px
+	
+	.footer 
+		@include footer-pack
+		@include margin-auto
+		height: auto
+	
+		hr 
+			width: 100px
+			border-width: 0px
+			display: inline-block
+	
+		p 
+			text-align: center
+	
+	
+	
+	.team 
+		@include margin-auto
+		float: none
+		position: relative
+	
+		.person 
+			@include margin-auto
+			@include flex-position(center)
+			@include square(200px)
+	
+		.name 
+			display: none
+	
+		.text p 
+			@include text()
+	
+		.col-m-12 .layer 
+			display: block
+			@include background(transparent)
+
+
+@media (min-width: 768px) and (max-width: 1200px) 
+	.col-s-1 
+		width: 8.33%
+	.col-s-2 
+		width: 16.66%
+	.col-s-3 
+		width: 25%
+	.col-s-4 
+		width: 33.33%
+	.col-s-5 
+		width: 41.66%
+	.col-s-6 
+		width: 50%
+	.col-s-7 
+		width: 58.33%
+	.col-s-8 
+		width: 66.66%
+	.col-s-9 
+		width: 75%
+	.col-s-10 
+		width: 83.33%
+	.col-s-11 
+		width: 91.66%
+	.col-s-12 
+		width: 100%
+
+	.pictures 
+		display: none
+	
+	.profits .col-s-12 
+		padding: 0
+		margin-top: 20px
+	
+	.numbers 
+		float: none
+		font-size: 50px
+	
+	.footer 
+		@include margin-auto
+		@include footer-pack
+		font-size: 1.5vh
+	
+	.gallery img 
+		object-fit: cover
+	
+	.team
+		@include margin-auto
+		float: none
+		position: relative
+		.name 
+			display: none
+	
+		.text 
+			p 
+	
+		.col-s-6
+			height: 50vw
+			@include flex-position(center)
+			.layer 
+				display: block
+				@include background(transparent)
+			
+		.person 
+			@include margin-auto
+			text-align: center
+			@include square(200px)
